@@ -29,6 +29,6 @@ Route::prefix('client')->middleware('auth')->group(function (){
     Route::get('topups/form', [\App\Http\Controllers\TopupController::class, 'create'])->name('client.topups.from');
     Route::post('topups', [\App\Http\Controllers\TopupController::class, 'store'])->name('client.topups.save');
 
-    Route::get('purchases', [\App\Http\Controllers\TransactionController::class, 'index']);
+    Route::get('purchases', [\App\Http\Controllers\TransactionController::class, 'index'])->name('client.purchases');
 });
 

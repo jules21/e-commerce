@@ -22,7 +22,7 @@
                 <a href="{{route('client.topups')}}" class="nav-link">Topups</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('products.index')}}" class="nav-link">Purchases</a>
+                <a href="{{route('client.purchases')}}" class="nav-link">Purchases</a>
             </li>
         @endif
         <li class="nav-item dropdown">

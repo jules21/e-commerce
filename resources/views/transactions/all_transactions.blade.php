@@ -7,8 +7,7 @@
                 <div class="card">
 
                     <div class="card-header">
-                        <span class="left">{{ __('All Products') }}</span>
-                        <a href="{{route('products.create')}}" class="btn btn-primary align-self-end ml-10 right">Add Product</a>
+                        <span class="left">{{ __('All Transactions') }}</span>
                     </div>
 
                     <div class="card-body">
@@ -18,37 +17,34 @@
                             </div>
                         @endif
 
-                        @if($products->count() > 0)
+                        @if($transactions->count() > 0)
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
+                                    <th>Client</th>
+                                    <th>Product Image</th>
+                                    <th>Product Name</th>
                                     <th>Price</th>
                                     <th>discount</th>
-                                    <th>Actions</th>
+                                    <th>Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($products as $product)
+                                @foreach($transactions as $transaction)
                                     <tr>
-                                        <td><img src="{{$product->getImage()}}" width="100" height="100" alt="no image"></td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->description}}</td>
-                                        <td>{{$product->price}}</td>
-                                        <td>{{$product->discount}}</td>
-                                        <td>
-                                            <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Edit</a>
-                                            <a href="{{route('products.destroy', $product->id)}}" class="btn btn-danger btn-delete">Delete</a>
-                                        </td>
+                                        <td>{{$transaction->user->name}}</td>
+                                        <td><img src="{{$transaction->product->getImage()}}" width="100" height="100" alt="no image"></td>
+                                        <td>{{$transaction->name}}</td>
+                                        <td>{{$transaction->price}}</td>
+                                        <td>{{$transaction->discount}}</td>
+                                        <td>{{$transaction->created_at}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         @else
                             <div class="alert alert-info">
-                                No Product Added Yet!
+                                No Purchase Done Yet!
                             </div>
                         @endif
 
