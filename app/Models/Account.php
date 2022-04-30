@@ -9,8 +9,10 @@ class Account extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'currency', 'amount', 'account_number'];
+
     public function user(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
