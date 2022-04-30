@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FileManager;
 use App\Http\Requests\ProductRequest;
+use App\Mail\NewProductMail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,7 @@ class ProductController extends Controller
         $imageName = str_replace($dir, '', $path);
 
         //store product Details
+       $product=
         Product::create([
             'image' => $imageName,
             'name' => $request->name,
@@ -52,6 +54,9 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $this->getDiscount($request->price)
         ]);
+
+        //mail admin
+        \Mail::to(auth()->user())->send(new NewProductMail($product));
 
         return redirect()->route('products.index')->with('status', 'Product Create Successfully');
     }

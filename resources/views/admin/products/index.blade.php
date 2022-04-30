@@ -27,6 +27,7 @@
                                 <th>Description</th>
                                 <th>Price</th>
                                 <th>discount</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,6 +38,10 @@
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->discount}}</td>
+                                    <td>
+                                        <a href="{{route('products.edit')}}" class="btn btn-warning">Edit</a>
+                                        <a href="{{route('products.edit')}}" class="btn btn-dange">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
