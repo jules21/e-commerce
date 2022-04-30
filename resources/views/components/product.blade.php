@@ -5,7 +5,9 @@
         <p class="card-text">{{Str::limit($product->description, 200)}}
             <span class="pl-10">%{{$product->discount}}</span></p>
         <a href="{{route('products.buy', $product->id)}}" class="card-link" style="text-decoration: none">Buy Now</a>
-        <a href="#" class="card-link text-dark" style="text-decoration: none">${{$product->price}}
+        <a href="#" class="card-link text-dark" style="text-decoration: none">
+            <span class="text-decoration-line-through">${{$product->price}}</span>
+            <span class="">${{$product->totalPrice}}</span>
         </a>
     </div>
 </div>
