@@ -19,7 +19,7 @@
             </li>
         @else
             <li class="nav-item">
-                <a href="{{route('products.index')}}" class="nav-link">Account</a>
+                <a href="{{route('client.topups')}}" class="nav-link">Topups</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('products.index')}}" class="nav-link">Purchases</a>

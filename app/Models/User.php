@@ -42,9 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function accounts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function account(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(Account::class);
+        return $this->hasOne(Account::class);
     }
     public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

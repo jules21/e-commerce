@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,11 @@ class AuthController extends Controller
            'name' => $request->name,
            'email' => $request->email,
            'password' => Hash::make($request->password),
+        ]);
+//        create default account for new user
+        Account::create([
+            'user_id'=>$user->id,
+            'account_number'=>'21212-262212-' . rand(1,5000),
         ]);
 
         auth()->login($user);
