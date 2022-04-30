@@ -39,8 +39,8 @@
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->discount}}</td>
                                     <td>
-                                        <a href="{{route('products.edit')}}" class="btn btn-warning">Edit</a>
-                                        <a href="{{route('products.edit')}}" class="btn btn-dange">Delete</a>
+                                        <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Edit</a>
+                                        <a href="{{route('products.destroy', $product->id)}}" class="btn btn-danger btn-delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,7 +54,37 @@
 
                     </div>
                 </div>
+                <form method="post" id="delete-form" class="hide">
+                    @csrf
+                    @method('DELETE')
+                </form>
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).on('click', '.btn-delete', function(e){
+        e.preventDefault();
+        let btn = $(this);
+        let link = btn.attr('href');
+        swal.fire({
+            title:'are you sure?',
+            text : 'This Product Will Be delete. No Revert!',
+            icon: 'warning',
+            showConfirmButton:true,
+            showCancelButton:true
+        }).then((result) =>{
+            if(result.isConfirmed)
+            {
+                // submit delete form
+                let form = $('#delete-form');
+                form.attr('action', link);
+                form.submit();
+
+            }
+        })
+    })
+</script>
+
 @endsection
