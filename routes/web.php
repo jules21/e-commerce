@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontPageController::class, 'index']);
 
 Auth::routes();
 
@@ -24,3 +22,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('/products', \App\Http\Controllers\ProductController::class);
 });
+
+Route::get('products/{product}/buy', [\App\Http\Controllers\FrontPageController::class, 'buy'])->name('products.buy')->middleware('auth');
