@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AccountResource extends JsonResource
+class TopupResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,6 @@ class AccountResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' =>$this->id,
-            'account_number'=>$this->account_number,
-            'amount'=>$this->amount,
-            'currency'=>$this->currency,
-            'user_id' =>$this->user_id
-        ];
+        return parent::toArray($request);
     }
 }

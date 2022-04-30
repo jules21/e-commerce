@@ -15,4 +15,9 @@ class Account extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function topups()
+    {
+        return $this->hasMany(Topup::class);
+    }
 }
