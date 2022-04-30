@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->belongsTo(User::class);
+    }
 }
