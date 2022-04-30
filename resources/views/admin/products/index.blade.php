@@ -26,6 +26,7 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
                                 <th>discount</th>
                                 <th>Actions</th>
                             </tr>
@@ -37,6 +38,7 @@
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->price}}</td>
+                                    <td>{{$product->quantity}}</td>
                                     <td>{{$product->discount}}</td>
                                     <td>
                                         <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Edit</a>

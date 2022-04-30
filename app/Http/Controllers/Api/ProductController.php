@@ -45,6 +45,7 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
+                'quantity' => $request->quantity,
                 'discount' => $this->getDiscount($request->price)
             ]);
 
@@ -87,6 +88,7 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
+                'quantity' => $request->quantity,
                 'discount' => $this->getDiscount($request->price)
             ]);
 

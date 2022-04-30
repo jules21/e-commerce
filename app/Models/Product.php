@@ -16,4 +16,8 @@ class Product extends Model
     {
         return $this->image ? \Storage::url(FileManager::PRODUCT_IMAGE_PATH .$this->image) : null;
     }
+    public function getTotalPriceAttribute()
+    {
+        return ( 1 - ($this->discount/100)) * $this->price;
+    }
 }

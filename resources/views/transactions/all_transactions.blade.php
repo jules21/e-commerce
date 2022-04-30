@@ -34,9 +34,9 @@
                                     <tr>
                                         <td>{{$transaction->user->name}}</td>
                                         <td><img src="{{$transaction->product->getImage()}}" width="100" height="100" alt="no image"></td>
-                                        <td>{{$transaction->name}}</td>
-                                        <td>{{$transaction->price}}</td>
-                                        <td>{{$transaction->discount}}</td>
+                                        <td>{{$transaction->product->name}}</td>
+                                        <td>{{$transaction->amount}}</td>
+                                        <td>{{$transaction->product->discount}}</td>
                                         <td>{{$transaction->created_at}}</td>
                                     </tr>
                                 @endforeach
