@@ -102,7 +102,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        // process image
+        $file = $request->image;
+        $dir = FileManager::PRODUCT_IMAGE_PATH;
+        $path = $file->store($dir);
+        $imageName = str_replace($dir, '', $path);
+
+        //update product Details
+        $product->update([
+                'image' => $imageName,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'discount' => $this->getDiscount($request->price)
+            ]);
+
+
+        return redirect()->route('products.index')->with('status', 'Product Updated Successfully');
     }
 
     /**
