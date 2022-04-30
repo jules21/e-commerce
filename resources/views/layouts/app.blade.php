@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>E-commerce - @yield('title', 'Home')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -82,5 +82,7 @@
             @yield('content')
         </main>
     </div>
+
+@yield('scripts')
 </body>
 </html>

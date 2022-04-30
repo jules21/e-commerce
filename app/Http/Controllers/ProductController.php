@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\FileManager;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -34,9 +36,34 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        // process image
+        $file = $request->image;
+        $dir = FileManager::PRODUCT_IMAGE_PATH;
+        $path = $file->store($dir);
+        $imageName = str_replace($dir, '', $path);
+
+        //store product Details
+        Product::create([
+            'image' => $imageName,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount' => $this->getDiscount($request->price)
+        ]);
+
+        return redirect()->route('products.index')->with('status', 'Product Create Successfully');
+    }
+
+    public function getDiscount($price)
+    {
+        if ($price >= 112 && $price<=115)
+            return 0.25;
+        elseif ($price > 120)
+            return  0.50;
+        else
+            return 0;
     }
 
     /**
