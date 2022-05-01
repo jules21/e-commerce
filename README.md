@@ -21,9 +21,9 @@ Task done in Three category
 ## Setup Project
 
 No much required, It's Just to 
- - clone
- - composer install
- - seed database
+ - Clone the project
+ - Composer install
+ - Seed database
 
 Default user
 
