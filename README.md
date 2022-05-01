@@ -25,6 +25,11 @@ No much required, It's Just to
  - composer install
  - seed database
 
+Default user
+
+    email: admin@ecommerce.com  
+    password: password
+    
 
 ## Challenge Approach & Solution
 
@@ -34,3 +39,12 @@ the scenario first, afterward make tables and relationship.
 After designing database it was foundation and gave me insight on how i will work on remaining tasks
 
 on Frond-end design is where i will improve from using Blade template engine to Frontend Framework likely react.
+
+## React Frontend
+
+Below is the link to repo for client side using react.
+
+ https://github.com/jules21/e-commerce-client  
+
+
+
