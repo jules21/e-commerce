@@ -32,6 +32,10 @@
                                     <input type="number" step="any" class="form-control" name="price" id="price" value="{{old('price')}}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="quantity">Quantity $</label>
+                                    <input type="number" step="any" class="form-control" name="quantity" id="quantity" value="{{old('quantity')}}">
+                                </div>
+                                <div class="form-group">
                                     <label for="description">description</label>
                                     <textarea class="form-control" name="description" id="description" value="{{old('name')}}">{{old('textarea')}}</textarea>
                                 </div>

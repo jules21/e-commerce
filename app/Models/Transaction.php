@@ -9,13 +9,15 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\HasMany
+    protected $fillable = ['product_id', 'user_id', 'amount','status'];
+
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

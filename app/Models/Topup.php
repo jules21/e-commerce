@@ -9,4 +9,9 @@ class Topup extends Model
 {
     use HasFactory;
     protected $fillable = ['account_id','previous_amount', 'amount'];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

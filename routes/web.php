@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontPageController::class, 'index']);
 
 Auth::routes();
 
@@ -24,3 +22,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('/products', \App\Http\Controllers\ProductController::class);
 });
+
+Route::prefix('client')->middleware('auth')->group(function (){
+    Route::get('products/{product}/buy', [\App\Http\Controllers\FrontPageController::class, 'buy'])->name('products.buy');
+    Route::get('topups', [\App\Http\Controllers\TopupController::class, 'topups'])->name('client.topups');
+    Route::get('topups/form', [\App\Http\Controllers\TopupController::class, 'create'])->name('client.topups.from');
+    Route::post('topups', [\App\Http\Controllers\TopupController::class, 'store'])->name('client.topups.save');
+
+    Route::get('purchases', [\App\Http\Controllers\TransactionController::class, 'index'])->name('client.purchases');
+});
+
