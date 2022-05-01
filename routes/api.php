@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
     Route::apiResource('accounts',\App\Http\Controllers\Api\AccountController::class);
     Route::apiResource('accounts.topups',\App\Http\Controllers\Api\TopupController::class);
+    Route::get('my-account', [\App\Http\Controllers\Api\AccountController::class, 'myAccount']);
 
     Route::get('purchases', [\App\Http\Controllers\Api\PurchaseController::class, 'index']);
     Route::get('my-purchases', [\App\Http\Controllers\Api\PurchaseController::class, 'myPurchases']);

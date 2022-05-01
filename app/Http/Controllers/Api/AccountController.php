@@ -69,4 +69,10 @@ class AccountController extends Controller
         $account->delete();
         return response()->json(null,Response::HTTP_NO_CONTENT);
     }
+
+    public function myAccount(Request $request)
+    {
+        $account = Account::where('user_id',$request->user()->id)->first();
+        return response()->json(new AccountResource($account),Response::HTTP_OK);
+    }
 }

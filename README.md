@@ -29,7 +29,12 @@ Default user
 
     email: admin@ecommerce.com  
     password: password
-    
+
+## Resftul API documentation by Postman
+
+ [Click me for documentation](https://documenter.getpostman.com/view/6413036/UyrGCEMF).
+
+
 
 ## Challenge Approach & Solution
 

@@ -42,6 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['accountId'];
+
     public function account(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Account::class);
@@ -49,5 +51,9 @@ class User extends Authenticatable
     public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+    public function getAccountIdAttribute(): int
+    {
+        return $this->account->id;
     }
 }
