@@ -21,14 +21,68 @@ Task done in Three category
 ## Setup Project
 
 No much required, It's Just to 
- - Clone the project
- - Composer install
- - Seed database
-
-Default user
+ - Clone the project repository
+ ```
+ git clone https://github.com/jules21/e-commerce.git
+ ```
+  - Switch to the project
+ ```
+ cd e-commerce
+ ```
+ - Install all the dependencies
+ ```
+ composer install
+ ```
+- Copy the example env file to .env file
+```
+cp .env.example .env
+```
+- Make the required configuration changes in the .env file
+    - Set the database connection
+        ```
+      //replace with your database connection
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=e_commerce
+        DB_USERNAME=root
+        DB_PASSWORD=
+        ```
+    - Set Email connection
+        ```
+      //replace with your email configuration
+        MAIL_DRIVER=smtp
+        MAIL_HOST=smtp.mailtrap.io
+        MAIL_PORT=2525
+        MAIL_USERNAME=null
+        MAIL_PASSWORD=null
+        ```
+- Generate application key
+```
+php artisan key:generate
+```
+ - Run the database migrations
+``` 
+php artisan migrate
+```
+- Run the database seeds
+```
+php artisan db:seed
+```
+- Run the server
+```
+php artisan serve
+```
+Default user (Admin)
 
     email: admin@ecommerce.com  
     password: password
+
+- Link storage to the public folder
+``` 
+php artisan storage:link
+```
+
 
 ## Resftul API documentation by Postman
 
@@ -43,7 +97,7 @@ the scenario first, afterward make tables and relationship.
 
 After designing database it was foundation and gave me insight on how i will work on remaining tasks
 
-on Frond-end design is where i will improve from using Blade template engine to Frontend Framework likely react.
+Interface is where I would like to improve by making appealing design as real e-commerce application
 
 ## React Frontend
 
