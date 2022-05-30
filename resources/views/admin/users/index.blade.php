@@ -18,39 +18,41 @@
                         @endif
 
                         @if($users->count() > 0)
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>email</th>
-                                    <th>Purchases</th>
-                                    <th>Topups</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $user)
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
                                     <tr>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>
-                                            <a href="{{route('client.transactions', $user->id)}}">
-                                                <span>{{$user->transactions->count()}}</span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{route('client.topups.list', $user->id)}}">
-                                                <span>{{optional(optional($user->account)->topups)->count()}}</span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{route('client.transactions', $user->id)}}" class="btn btn-outline-info"> View Purchases</a>
-                                            <a href="{{route('client.topups.list', $user->id)}}" class="btn btn-outline-secondary"> Show Topups</a>
-                                        </td>
+                                        <th>Name</th>
+                                        <th>email</th>
+                                        <th>Purchases</th>
+                                        <th>Topups</th>
+                                        <th>Actions</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>
+                                                <a href="{{route('client.transactions', $user->id)}}">
+                                                    <span>{{$user->transactions->count()}}</span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('client.topups.list', $user->id)}}">
+                                                    <span>{{optional(optional($user->account)->topups)->count()}}</span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('client.transactions', $user->id)}}" class="btn btn-outline-info"> View Purchases</a>
+                                                <a href="{{route('client.topups.list', $user->id)}}" class="btn btn-outline-secondary"> Show Topups</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             {{$users->links()}}
                         @else
                             <div class="alert alert-info">

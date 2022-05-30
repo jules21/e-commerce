@@ -19,35 +19,37 @@
                         @endif
 
                         @if($products->count() > 0)
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>discount</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($products as $product)
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
                                 <tr>
-                                    <td><img src="{{$product->getImage()}}" width="100" height="100" alt="no image"></td>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->description}}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->quantity}}</td>
-                                    <td>{{$product->discount}}</td>
-                                    <td>
-                                        <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Edit</a>
-                                        <a href="{{route('products.destroy', $product->id)}}" class="btn btn-danger btn-delete">Delete</a>
-                                    </td>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>discount</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($products as $product)
+                                    <tr>
+                                        <td><img src="{{$product->getImage()}}" width="100" height="100" alt="no image"></td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->description}}</td>
+                                        <td>{{$product->price}}</td>
+                                        <td>{{$product->quantity}}</td>
+                                        <td>{{$product->discount}}</td>
+                                        <td>
+                                            <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Edit</a>
+                                            <a href="{{route('products.destroy', $product->id)}}" class="btn btn-danger btn-delete">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                             @else
                             <div class="alert alert-info">
                                 No Product Added Yet!
