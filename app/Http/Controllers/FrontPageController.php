@@ -28,7 +28,7 @@ class FrontPageController extends Controller
         //check if he has enough amount
        elseif ($userCash < $product->totalPrice)
         {
-            return back()->with('status','No enough money to buy this Product! <br\> Topup first.');
+            return back()->with('status','No enough money to buy this Product! Topup first.');
         }
         //buy product 1.deduct amount 2.create transaction 3.reduce product
         else{

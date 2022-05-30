@@ -9,13 +9,17 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                @forelse($products as $product)
-                    <x-product :product="$product" />
-                @empty
+                <div class="row">
+                    @forelse($products as $product)
+                        <div class="col-md-4 col-lg-3 col-sm-6 my-2">
+                            <x-product :product="$product" />
+                        </div>
+                    @empty
                         <div class="alert alert-info">
                             No Products!
                         </div>
-                @endforelse
+                    @endforelse
+                </div>
             </div>
         </div>
     </div>

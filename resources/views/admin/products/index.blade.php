@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
 
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <span class="left">{{ __('All Products') }}</span>
                         <a href="{{route('products.create')}}" class="btn btn-primary align-self-end ml-10 right">Add Product</a>
                     </div>
