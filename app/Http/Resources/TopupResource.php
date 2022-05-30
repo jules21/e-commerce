@@ -14,6 +14,12 @@ class TopupResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            "account_id"=>$this->account_id,
+            "amount"=>$this->amount,
+            "account"=>new AccountResource($this->account),
+            "created_at"=>$this->created_at,
+        ];
     }
 }

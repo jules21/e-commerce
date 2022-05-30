@@ -21,6 +21,7 @@ class PurchaseResource extends JsonResource
             "amount"=> $this->amount,
             "status"=> $this->status,
             "product"=> new ProductResource($this->whenLoaded('product')),
+            "created_at"=> $this->created_at,
         ];
     }
 }
