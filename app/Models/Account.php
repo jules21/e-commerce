@@ -11,7 +11,7 @@ class Account extends Model
 
     protected $fillable = ['user_id', 'currency', 'amount', 'account_number'];
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

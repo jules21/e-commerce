@@ -21,6 +21,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('/products', \App\Http\Controllers\ProductController::class);
+    //get all users
+    Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 });
 
 Route::prefix('client')->middleware('auth')->group(function (){
@@ -30,5 +32,8 @@ Route::prefix('client')->middleware('auth')->group(function (){
     Route::post('topups', [\App\Http\Controllers\TopupController::class, 'store'])->name('client.topups.save');
 
     Route::get('purchases', [\App\Http\Controllers\TransactionController::class, 'index'])->name('client.purchases');
+    Route::get('purchases/{user}', [\App\Http\Controllers\TransactionController::class, 'userPurchases'])->name('client.transactions');
+
+    Route::get('topups/{user}/', [\App\Http\Controllers\TopupController::class, 'userTopups'])->name('client.topups.list');
 });
 

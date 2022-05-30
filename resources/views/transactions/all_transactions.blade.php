@@ -33,15 +33,16 @@
                                 @foreach($transactions as $transaction)
                                     <tr>
                                         <td>{{$transaction->user->name}}</td>
-                                        <td><img src="{{$transaction->product->getImage()}}" width="100" height="100" alt="no image"></td>
-                                        <td>{{$transaction->product->name}}</td>
+                                        <td><img src="{{optional($transaction->product)->getImage()}}" width="100" height="100" alt="no image"></td>
+                                        <td>{{optional($transaction->product)->name}}</td>
                                         <td>{{$transaction->amount}}</td>
-                                        <td>{{$transaction->product->discount}}</td>
+                                        <td>{{optional($transaction->product)->discount}}</td>
                                         <td>{{$transaction->created_at}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{$transactions->links()}}
                         @else
                             <div class="alert alert-info">
                                 No Purchase Done Yet!

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'products')
+@section('title', 'users')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -7,11 +7,7 @@
                 <div class="card">
 
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <span class="left">{{ __('Account Topups') }}</span>
-                        @if(!Auth::user()->is_admin)
-
-                            <a href="{{route('client.topups.from')}}" class="btn btn-primary align-self-end ml-10 right">Add Topup</a>
-                        @endif
+                        <span class="left">{{ __('All users') }}</span>
                     </div>
 
                     <div class="card-body">
@@ -21,39 +17,44 @@
                             </div>
                         @endif
 
-                        <div class="div">
-                            <p class="font-weight-bold">Total Amount :${{auth()->user()->account->amount}}</p>
-                        </div>
-
-                        @if($topups->count() > 0)
+                        @if($users->count() > 0)
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    @if(auth()->user()->is_admin)
-                                        <th>User</th>
-                                    @endif
-                                    <th>Account</th>
-                                    <th>Amount</th>
-                                    <th>Creation Date</th>
+                                    <th>Name</th>
+                                    <th>email</th>
+                                    <th>Purchases</th>
+                                    <th>Topups</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($topups as $topup)
+                                @foreach($users as $user)
                                     <tr>
-                                        @if(auth()->user()->is_admin)
-                                            <td>{{optional(optional($topup->account)->user)->name}}</td>
-                                        @endif
-                                        <td>{{$topup->account->account_number}}</td>
-                                        <td>{{$topup->amount}}</td>
-                                        <td>{{$topup->created_at}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>
+                                            <a href="{{route('client.transactions', $user->id)}}">
+                                                <span>{{$user->transactions->count()}}</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('client.topups.list', $user->id)}}">
+                                                <span>{{optional(optional($user->account)->topups)->count()}}</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('client.transactions', $user->id)}}" class="btn btn-outline-info"> View Purchases</a>
+                                            <a href="{{route('client.topups.list', $user->id)}}" class="btn btn-outline-secondary"> Show Topups</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{$topups->links()}}
+                            {{$users->links()}}
                         @else
                             <div class="alert alert-info">
-                                No Topup Done Yet!
+                                No Product Added Yet!
                             </div>
                         @endif
 

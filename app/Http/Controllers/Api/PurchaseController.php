@@ -19,12 +19,12 @@ class PurchaseController extends Controller
 
     public function index(Request $request)
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::with('product')->get();
         return response()->json(PurchaseResource::collection($transactions), Response::HTTP_OK);
     }
     public function myPurchases(Request $request)
     {
-        $transactions = Transaction::where('user_id', $request->user()->id)->get();
+        $transactions = Transaction::with('product')->where('user_id', $request->user()->id)->get();
         return response()->json(PurchaseResource::collection($transactions), Response::HTTP_OK);
     }
 

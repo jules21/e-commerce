@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topup;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TopupController extends Controller
@@ -10,7 +11,11 @@ class TopupController extends Controller
     public function topups()
     {
         $user = auth()->user();
-        $topups = Topup::where('account_id', '=', $user->account->id)->get();
+        if ($user->is_admin) {
+            $topups = Topup::paginate(10);
+        } else {
+            $topups = Topup::where('account_id', '=', $user->account->id)->paginate(10);
+        }
         return view('accounts.topup', compact('topups'));
     }
     public function create()
@@ -33,5 +38,10 @@ class TopupController extends Controller
         $user->account->update(['amount' => $previous_amount + $topup->amount]);
 
         return redirect()->route('client.topups')->with('status', 'amount topped successfully');
+    }
+    public function userTopups(User $user)
+    {
+        $topups = Topup::where('account_id', '=', $user->account->id)->paginate(10);
+        return view('accounts.topup', compact('topups'));
     }
 }
